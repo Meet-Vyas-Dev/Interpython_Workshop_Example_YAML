@@ -14,9 +14,11 @@ jobs:
   # Every possible permutation of Python versions 3.10 and 3.11 with the latest versions of Ubuntu, Mac OS and Windows operating systems will be tested.
   # we can expect 6 build jobs in total.
   build:
-    matrix:
-      os: [ubuntu-latest, windows-latest, macOS-latest]
-      python-version: [3.10,3.11]
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        python-version: [3.10,3.11]
     runs-on: ${{ matrix.os }}
 
 # A job is just a sequence of steps that are executed one by one 
@@ -25,11 +27,12 @@ jobs:
     # We first checkout the code from the repository which copies the code from the local repository to the runner machine
     # The 'name' is just an optional label which is shown in the log - which helps in clarifying the process, which can be anything you want
     - name: Run a one-line script
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
 
+    - name: Say hello
       run: echo Hello, world!
 
-#    - name: Set up Python 3.10 or 3.11
+    - name: Set up Python 3.10 or 3.11
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
