@@ -49,3 +49,15 @@ jobs:
     - name: Test with PyTest
       run: |
         python -m pytest --cov=lcanalyzer.models tests/test_models.py
+
+        - name: Test with PyTest
+        run: |
+              python -m pytest --cov=lcanalyzer.models tests/test_models.py
+  
+    - name: Check .py style with Pylint
+      run: |
+                python -m pylint --fail-under=0 --reports=y lcanalyzer
+  
+    - name: Check .ipynb style with Pylint
+      run: |
+                  python -m nbqa pylint --fail-under=0 light_curve_analysis.ipynb --disable=C0114
