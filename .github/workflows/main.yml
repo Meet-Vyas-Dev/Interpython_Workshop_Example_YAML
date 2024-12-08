@@ -49,10 +49,6 @@ jobs:
     - name: Test with PyTest
       run: |
         python -m pytest --cov=lcanalyzer.models tests/test_models.py
-
-    - name: Test with PyTest
-      run: |
-              python -m pytest --cov=lcanalyzer.models tests/test_models.py
   
     - name: Check .py style with Pylint
       run: |
