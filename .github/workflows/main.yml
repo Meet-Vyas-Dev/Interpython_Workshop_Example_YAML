@@ -50,9 +50,9 @@ jobs:
       run: |
         python -m pytest --cov=lcanalyzer.models tests/test_models.py
 
-        - name: Check .py style with Pylint
-        run: |
-          python3 -m pylint --fail-under=0 --reports=y lcanalyzer
+    - name: Check .py style with Pylint
+      run: |
+        python3 -m pylint --fail-under=0 --reports=y lcanalyzer
   
 # Here the fail under signifies the minimum score that the pylint should have. If the score is below the minimum score, the build will fail.
 # The --reports=y flag is used to generate a report in the pylint format. This report will be stored in the pylint.out file.
