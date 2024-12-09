@@ -1,31 +1,58 @@
 # First we will define the name of the process which is 'CI' which stands for Continuous Integration
 
-
+name: CI 
 
 # Now we define the Github Event which will trigger the CI build 
 
-
+on: push 
 
 # We can define a single or multiple jobs which can be executed 
 
+jobs:
 
+# The name of the job is 'build'
+# Build is a common name for the job that is used to build the project
+# The ${{ }} are used as a means to reference configuration values from the matrix. 
+# Every possible permutation of Python versions 3.10 and 3.11 with the latest versions of Ubuntu, Mac OS and Windows operating systems will be tested.
+# we can expect 6 build jobs in total.
 
-  # The name of the job is 'build'
-  # Build is a common name for the job that is used to build the project
-  # The ${{ }} are used as a means to reference configuration values from the matrix. 
-  # Every possible permutation of Python versions 3.10 and 3.11 with the latest versions of Ubuntu, Mac OS and Windows operating systems will be tested.
-  # we can expect 6 build jobs in total.
+    build:
 
+        strategy:
+            matrix:
+               os: [ubuntu-latest, windows-latest, macOS-latest]
+               python-version: ["3.10","3.11","3.12"]
+            runs-on: ${{matrix.os}}
 
 # A job is just a sequence of steps that are executed one by one 
-    
 
-    # We first checkout the code from the repository which copies the code from the local repository to the runner machine
-    # The 'name' is just an optional label which is shown in the log - which helps in clarifying the process, which can be anything you want
+    steps:
 
+# We first checkout the code from the repository which copies the code from the local repository to the runner machine
+# The 'name' is just an optional label which is shown in the log - which helps in clarifying the process, which can be anything you want
+    - name: Checkout the local repository
+      uses: actions/checkout@v2
+
+    - name: Print a line for fun
+      run: echo Hello, world!
+
+    - name: Set up Python 3.10 or 3.11 or 3.12 
+      uses: action/setup-python@v3
+      with:
+          python-version:  ${{ matrix.python-version }}
 
 # The next step is to install the dependencies required for the project.
 
+    - name: Install Python dependencies
+      run: |
+         python -m pip install --upgrade pip 
+         pip install -r requirements.txt
+         
     
 # One of the most important steps in the CI process is to run the tests.
 # In this case, we are using the PyTest framework to run the tests
+
+    - name: Test with Pytest
+      run: |
+          python -m pytest --cov=lcanalyzer.models tests/test_models.py
+      

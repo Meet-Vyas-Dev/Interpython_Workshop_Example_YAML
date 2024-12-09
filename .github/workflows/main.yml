@@ -54,5 +54,5 @@ jobs:
 
     - name: Test with Pytest
       run: |
-      python -m pytest --cov=lcanalyzer.models tests/test_models.py
+          python -m pytest --cov=lcanalyzer.models tests/test_models.py
       
