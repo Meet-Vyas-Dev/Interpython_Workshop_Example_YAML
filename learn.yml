@@ -2,54 +2,29 @@
 
 # The main structure in YAML files are key value pairs. The key is separated from the value by a colon (:). 
 
-name: Cole Palmer 
-height_cm: 188
-sports_played: football
 
 # In the above example, we have defined three key-value pairs. See how the height_cm is colored differently from the other keys. 
 # This is because it is an integer which is a different data type from the other keys which are strings.
 # We can define the integer to explicitly be a string by enclosing it in double quotes. 
 
-height_cm_: "188"
+
 
 # Now we can say that a person does not only play one game, but multiple games. For this we can use an array in YAML. It is defined as follows
 
-sports_played:
-  - football
-  - cricket
-  - basketball
 
 # In the above example, we have defined an array of sports that the person plays. 
 # Another way of defining an array is using the square brackets [] and each element is separated by a comma.
 
-sports_played: [football, cricket, basketball]
+
 
 # YAML also supports nested data structures. These type of data structures are called dictionaries or maps.
 # For example, we can define a person's details as follows:
 
-person:
-  name: Cole Palmer
-  height_cm: 188
-  sports_played:
-    - football
-    - cricket
-    - basketball
+
 
 # We can also combine maps and arrays to describe more complex data structures.
 # For example, we can define a list of persons as follows:
 
-persons:
-  - name: Cole Palmer
-    height_cm: 188
-    sports_played:
-      - football
-      - cricket
-      - basketball
-  - name: Roger Federer
-    height_cm: 175
-    sports_played:
-      - tennis
-      - basketball
 
 
 # GitHub Actions also makes use of | symbol to indicate a multi-line string that preserves new lines
