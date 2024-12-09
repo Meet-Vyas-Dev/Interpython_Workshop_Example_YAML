@@ -26,7 +26,7 @@ jobs:
 
 # A job is just a sequence of steps that are executed one by one 
 
-    steps:
+steps:
 
 # We first checkout the code from the repository which copies the code from the local repository to the runner machine
 # The 'name' is just an optional label which is shown in the log - which helps in clarifying the process, which can be anything you want
